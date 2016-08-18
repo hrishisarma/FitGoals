@@ -15,15 +15,15 @@ def index():
 
     return render_template('index.html')
 
-@app.route('/login', methods=['POST','GET'])
+@app.route('/login', methods=['POST'])
 def login():
-    login_users = db.db.users
-    login_users.find_one({'name' : request.form['user']})
+    users = db.db.users
+    login_users=users.find_one({'name' : request.form['user']})
 
     if login_users:
             if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_users['pass'].encode('utf-8'))== login_users['pass'].encode('utf-8'):
                 session['username'] = request.form['user']
-            return redirect(url_for('index'))
+                return redirect(url_for('index'))
 
     return 'Invalid username/password combination'
 
