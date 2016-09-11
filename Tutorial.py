@@ -5,8 +5,8 @@ import bcrypt
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 
-client = MongoClient('mongodb://dugi:hello123@ds161225.mlab.com:61225/players1993')
-db = client['players1993']
+client = MongoClient()
+db = client[]
 
 @app.route('/')
 def index():
